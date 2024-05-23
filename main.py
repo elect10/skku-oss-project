@@ -1,5 +1,7 @@
+from fastapi import FastAPI
 from routes.auth import auth_router
 from routes.question import question_router
+
 
 app = FastAPI()
 
