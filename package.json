@@ -1,0 +1,21 @@
+{
+  "name": "skku-oss-project",
+  "version": "1.0.0",
+  "description": "2024 1학기 오픈소스소프트웨어 실습 개인 프로젝트",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "path": "^0.12.7",
+    "uuid": "^9.0.1"
+  }
+}
