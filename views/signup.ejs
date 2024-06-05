@@ -47,9 +47,30 @@
       color: #fff;
       font-size: 1em;
       cursor: pointer;
+      margin-bottom: 1em;
     }
 
     .signup-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .signup-container a {
+      display: block;
+      width: auto;
+      padding: 0.5em;
+      border: none;
+      border-radius: 3px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      /* 버튼이 링크처럼 보이지 않도록 링크 텍스트의 밑줄을 제거합니다. */
+      margin-bottom: 1em;
+    }
+
+    .signup-container a:hover {
       background-color: #0056b3;
     }
   </style>
@@ -63,6 +84,7 @@
       <input type="text" name="nickname" placeholder="사용자명" required />
       <input type="password" name="password" placeholder="비밀번호" required />
       <button type="submit">회원가입</button>
+      <a href="/">메인으로</a>
     </form>
   </div>
 </body>
