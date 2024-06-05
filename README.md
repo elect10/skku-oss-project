@@ -22,6 +22,7 @@
 |Linux|⭕️|
 ### 실행 방법
 - Node 설치
+  
   `node v22.2.0` 설치
 - MySQL 설치
 
