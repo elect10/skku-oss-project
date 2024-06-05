@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 2em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    .login-container input[type="email"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    .login-container a {
+      display: block;
+      width: auto;
+      padding: 0.5em;
+      border: none;
+      border-radius: 3px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      /* 버튼이 링크처럼 보이지 않도록 링크 텍스트의 밑줄을 제거합니다. */
+      margin-bottom: 1em;
+    }
+
+    .login-container a:hover {
+      background-color: #0056b3;
+    }
+
+
+    .login-container button {
+      width: 100%;
+      padding: 0.5em;
+      border: none;
+      border-radius: 3px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      margin-bottom: 1em;
+    }
+
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>로그인</h2>
+    <form action="/auth/login" method="POST">
+      <input type="email" name="email" placeholder="이메일" required />
+      <input type="password" name="password" placeholder="비밀번호" required />
+      <button>로그인</button>
+      <a href="/auth/signup">회원가입</a>
+      <a href="/">메인으로</a>
+    </form>
+
+  </div>
+</body>
+
+</html>

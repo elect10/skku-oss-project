@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 및 답변 작성</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: calc(100% - 22px);
+            /* 20px padding + 2px border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .previous-questions {
+            margin-top: 20px;
+        }
+
+        .previous-questions h2 {
+            margin-bottom: 10px;
+        }
+
+        .previous-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .previous-questions ul li{
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            
+        }
+
+        .previous-questions a{
+            text-decoration: none; /* 밑줄 제거 */
+            color: black; /* 검정색 */
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-buttons a {
+            margin-left: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .auth-buttons a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <% if (user) { %>
+            <div class="auth-buttons">
+                <span>
+                    <%= user.nickname %>님
+                </span>
+                <a href="/auth/logout">로그아웃</a>
+            </div>
+        <% } else { %>
+            <div class="auth-buttons">
+                <a href="/auth/login">로그인</a>
+                <a href="/auth/signup">회원가입</a>
+            </div>
+        <% } %>
+                    <h1>질문 작성</h1>
+                    <form action="/question" method="POST">
+                        <div class="form-group">
+                            <label for="title">질문 제목:</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">질문 내용:</label>
+                            <textarea id="content" name="content" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">제출</button>
+                        </div>
+                    </form>
+                    <div class="previous-questions">
+                        <h2>이전 질문들</h2>
+                        <ul>
+                            <% questions.forEach(function(question) { %>
+                                <li><a href="/question/<%= question.id %>">
+                                        <%= question.title %>
+                                    </a></li>
+                                <% }); %>
+                        </ul>
+                    </div>
+    </div>
+</body>
+
+</html>

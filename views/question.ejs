@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= question.title %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            position: relative;
+        }
+        .question-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .question-content {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .answer-form {
+            margin-top: 20px;
+
+        }
+        .answer-form textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            height: 100px;
+        }
+        .answer-form button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .answer-form button:hover {
+            background-color: #0056b3;
+        }
+        .answers-list {
+            margin-top: 20px;
+        }
+        .answers-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .answers-list ul li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .top-right-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .top-right-buttons a {
+            margin-left: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .top-right-buttons a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-right-buttons">
+            <a href="/">메인 화면</a>
+        </div>
+        <h1 class="question-title"><%= question.title %></h1>
+        <p class="question-content"><%= question.content %></p>
+
+        <div class="answers-list">
+            <h2>답변</h2>
+            <ul>
+                <% if (answers.length > 0) { %>
+                    <% answers.forEach(function(answer) { %>
+                        <li><%= answer.content %></li>
+                    <% }); %>
+                <% } else { %>
+                    <li>아직 작성된 답변이 없어요!</li>
+                <% } %>                
+            </ul>
+        </div>
+
+        <div class="answer-form">
+            <h2>답변 달기</h2>
+            <form action="/question/<%= question.id %>/answer" method="POST">
+                <textarea name="content" required></textarea>
+                <button type="submit">답변 제출</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
