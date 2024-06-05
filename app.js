@@ -1,7 +1,9 @@
-import express from 'express';
+import express, { urlencoded } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import mysql from 'mysql2';
+import session from 'express-session'
+import bodyParser from 'body-parser'
 
 import * as auth from './routes/auth.js';
 import * as question from './routes/question.js';
@@ -37,9 +39,18 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'secretKey',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/auth', auth.router);
-app.use('question', question.router);
+app.use('/question', question.router);
+
+
 
 app.listen(port, () => {
     console.log('Example app listening on port 3000!');
@@ -52,7 +63,13 @@ app.get('/', (req, res) => {
             res.sendStatus(500);
         } else {
             console.log(result);
-            res.render('index', {questions: result});
+
+            if(req.session.user){
+                res.render('index', { questions: result, user: req.session.user});
+            }
+            else{
+                res.render('index', {questions: result, user: undefined})
+            }
         }
     });
 });
