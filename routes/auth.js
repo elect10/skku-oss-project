@@ -41,7 +41,7 @@ router.post("/signup", (req, res) => {
             if (err) {
                 res.sendStatus(500);
             } else {
-                res.sendStatus(200);
+                res.redirect('/auth/login')
             }
         }
     );
