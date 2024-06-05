@@ -5,7 +5,6 @@ import mysql from 'mysql2';
 
 import * as auth from './routes/auth.js';
 import * as question from './routes/question.js';
-import * as answer from './routes/answer.js';
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -41,7 +40,6 @@ app.use(express.json());
 
 app.use('/auth', auth.router);
 app.use('question', question.router);
-app.use('/answer', answer.router);
 
 app.listen(port, () => {
     console.log('Example app listening on port 3000!');
