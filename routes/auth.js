@@ -27,7 +27,6 @@ router.post("/signup", (req, res) => {
             }
         }
     );
-    const type = "service";
     const salt = saltGenerator();
     console.log("salt: " + salt);
     const passwordHash = crypto
@@ -35,8 +34,8 @@ router.post("/signup", (req, res) => {
         .update(password + salt)
         .digest("base64");
     dataBase.query(
-        `INSERT INTO users (id, email, nickname, password, type, salt) ` +
-        `VALUES ('${id}','${email}', '${nickname}', '${passwordHash}', '${type}', '${salt}')`,
+        `INSERT INTO users (id, email, nickname, password, salt) ` +
+        `VALUES ('${id}','${email}', '${nickname}', '${passwordHash}', '${salt}')`,
         (err, result) => {
             console.log(result);
             if (err) {
