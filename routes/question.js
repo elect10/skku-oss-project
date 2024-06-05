@@ -1,10 +1,11 @@
 import express from 'express';
 import dataBase from '../app.js';
 import { v4 as uuidv4 } from "uuid";
+import { checkLogin } from "../middleware.js";
 
 export const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', checkLogin, (req, res) => {
     const { title, content } = req.body;
     dataBase.query(`INSERT INTO questions (id, writer, title, content) `
         + `VALUES ('${uuidv4()}','${req.session.user.id}', '${title}', '${content}')`, (err, result) => {
@@ -18,7 +19,6 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-
     dataBase.query('SELECT questions.id, questions.title, questions.content FROM questions ' +
         `WHERE questions.id = '${req.params.id}'`, (err, resultQ) => {
             if (err) {
@@ -46,17 +46,6 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.delete('/:id', (req, res) => {
-    dataBase.query(`DELETE FROM questions WHERE id = '${req.params.id}'`, (err, result) => {
-        if (err) {
-            res.sendStatus(500);
-        } else {
-            res.send(result);
-        }
-    });
-    res.send('/:id');
-});
-
 router.put('/:id', (req, res) => {
     dataBase.query(`UPDATE questions SET title = '${req.body.title}', content = '${req.body.content}' WHERE id = ${req.params.id}`, (err, result) => {
         if (err) {
@@ -68,7 +57,7 @@ router.put('/:id', (req, res) => {
     res.send('/:id');
 });
 
-router.post('/:id/answer', (req, res) => {
+router.post('/:id/answer', checkLogin, (req, res) => {
     const questionId = req.params.id;
     const { content } = req.body;
 

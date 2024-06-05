@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import dataBase from "../app.js";
 import { saltGenerator } from "../utils.js";
 
+
 export const router = express.Router();
 
 router.get("/signup", (req, res) => {
