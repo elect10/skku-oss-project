@@ -48,8 +48,15 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    //res.render('index');
-    res.send('Hello World!')
+    dataBase.query(`SELECT * FROM questions`, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.sendStatus(500);
+        } else {
+            console.log(result);
+            res.render('index', {questions: result});
+        }
+    });
 });
 
 export default dataBase;
