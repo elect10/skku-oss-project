@@ -53,6 +53,7 @@
   ```
   localhost:3000 에서 서버 실행
 ### 실행 예시
+https://github.com/yaongmeow/skku-oss-project/assets/138637345/83f9808a-5f7d-42a6-bf51-8fa326ce0014
 ### 코드 설명
 #### app.js
 서버 구동
