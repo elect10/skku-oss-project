@@ -73,3 +73,13 @@ https://github.com/yaongmeow/skku-oss-project/assets/138637345/83f9808a-5f7d-42a
 - [ ] 질문과 답변 일자 표시
 - [ ] 질문자와 답변자 닉네임 표시
 - [ ] 나의 질문 모아보기
+
+---
+### phase 2 수정사항
+
+TABLE.sql 생성 및 연결 필요
+.env 파일 생성
+question 의 TABLE 에는 존재하지만 question.js 에서 인자로 date 를 받지 않아 에러가 나는 부분 fix
+내 질문 필터링 기능
+내 질문 필터링시 다시 모든 질문 로딩 기능
+질문 박스 시간별 정렬
