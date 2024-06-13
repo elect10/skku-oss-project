@@ -65,14 +65,42 @@ app.get('/', (req, res) => {
         } else {
             console.log(result);
 
+            let userQuestions = undefined;
+            if (req.session.userQuestions) {
+                userQuestions = req.session.userQuestions;
+            }
+
+            let user = undefined;
             if(req.session.user){
-                res.render('index', { questions: result, user: req.session.user});
+                user = req.session.user;
             }
-            else{
-                res.render('index', {questions: result, user: undefined})
-            }
+
+            res.render('index', { questions: result, user: user, userQuestions: userQuestions });
         }
     });
+});
+
+app.get('/auth/my-questions', (req, res) => {
+    if(req.session.user){
+        dataBase.query(`SELECT * FROM questions WHERE writer = ?`, [req.session.user.id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.sendStatus(500);
+            } else {
+                // 사용자가 작성한 질문의 ID만 세션에 저장합니다.
+                req.session.userQuestions = result.map(question => question.id);
+                res.redirect('/');
+            }
+        });
+    }
+    else{
+        res.redirect('/');
+    }
+});
+
+app.get('/all-questions', (req, res) => {
+    req.session.userQuestions = null; // userQuestions를 초기화합니다.
+    res.redirect('/'); // 홈페이지로 리다이렉트합니다.
 });
 
 export default dataBase;
