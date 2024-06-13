@@ -11,22 +11,24 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
+            
+            background-color: #f3f3f3;
         }
 
         .container {
-            background-color: #fff;
+            background-color: #f3f3f3;
+            display: flex;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 600px;
-            border-radius: 8px;
+            width: 100vmax;
             position: relative;
         }
 
         .form-group {
+            flex: 1;
             margin-bottom: 15px;
         }
 
@@ -40,14 +42,18 @@
             width: calc(100% - 22px);
             /* 20px padding + 2px border */
             padding: 10px;
+            width: 40%;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
+            background-color: #d8d7d7;
         }
 
         .form-group textarea {
             height: 200px;
-            resize: vertical;
+            width: 40%;
+            overflow: scroll;
+            resize: none;
         }
 
         .form-group button {
@@ -65,23 +71,29 @@
         }
 
         .previous-questions {
+            flex:1;
             margin-top: 20px;
+
         }
 
         .previous-questions h2 {
             margin-bottom: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
 
         .previous-questions ul {
             list-style: none;
             padding: 0;
+
         }
 
         .previous-questions ul li{
             padding: 10px;
+            width: 90px;
+            height: 120px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 10px;
             
         }
@@ -92,6 +104,7 @@
         }
 
         .auth-buttons {
+            
             position: absolute;
             top: 20px;
             right: 20px;
@@ -110,6 +123,10 @@
         .auth-buttons a:hover {
             background-color: #0056b3;
         }
+
+        .form-and-questions {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -127,31 +144,37 @@
                 <a href="/auth/login">로그인</a>
                 <a href="/auth/signup">회원가입</a>
             </div>
-        <% } %>
-                    <h1>질문 작성</h1>
-                    <form action="/question" method="POST">
-                        <div class="form-group">
-                            <label for="title">질문 제목:</label>
-                            <input type="text" id="title" name="title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="content">질문 내용:</label>
-                            <textarea id="content" name="content" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit">제출</button>
-                        </div>
-                    </form>
-                    <div class="previous-questions">
-                        <h2>이전 질문들</h2>
-                        <ul>
-                            <% questions.forEach(function(question) { %>
-                                <li><a href="/question/<%= question.id %>">
-                                        <%= question.title %>
-                                    </a></li>
-                                <% }); %>
-                        </ul>
+        <% } %>     
+                <div class="header-and-form">
+                    <div class="header">
+                        <h1>질문 작성</h1>
                     </div>
+                        <div class="form-and-questions">
+                        <form action="/question" method="POST">
+                            <div class="form-group">
+                                <label for="title">질문 제목:</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">질문 내용:</label>
+                                <textarea id="content" name="content" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit">제출</button>
+                            </div>
+                        </form>
+                        <div class="previous-questions">
+                            
+                            <ul>
+                                <% questions.forEach(function(question) { %>
+                                    <li><a href="/question/<%= question.id %>">
+                                            <%= question.title %>
+                                        </a></li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
     </div>
 </body>
 
