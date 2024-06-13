@@ -181,7 +181,8 @@
                             
                             <ul>
                                 <% 
-                                questions.forEach(function(question) { 
+                                // questions 배열을 date 속성을 기준으로 내림차순 정렬합니다.
+                                questions.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(function(question) { 
                                     // userQuestions 배열이 존재하고, 현재 질문의 ID가 userQuestions 배열에 포함되어 있으면 질문을 표시합니다.
                                     if (!userQuestions || userQuestions.includes(question.id)) {
                                 %>
