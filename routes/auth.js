@@ -21,6 +21,7 @@ router.post("/signup", (req, res) => {
         (err, result) => {
             if (err) {
                 res.sendStatus(500);
+                console.log("error in auth.js 24");
             } else {
                 if (result.length == 0) {
                 }
@@ -40,6 +41,7 @@ router.post("/signup", (req, res) => {
             console.log(result);
             if (err) {
                 res.sendStatus(500);
+                console.log("error in auth.js 44");
             } else {
                 res.redirect('/auth/login')
             }
@@ -62,6 +64,7 @@ router.post("/login", (req, res) => {
             console.log(result);
             if (err) {
                 res.sendStatus(500);
+                console.log("error in auth.js 65");
             } else {
                 if (!result) {
                     res.send("no such user");

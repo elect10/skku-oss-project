@@ -61,6 +61,7 @@ app.get('/', (req, res) => {
         if (err) {
             console.log(err)
             res.sendStatus(500);
+            console.log("error in app.js 64");
         } else {
             console.log(result);
 
