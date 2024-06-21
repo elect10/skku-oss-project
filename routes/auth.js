@@ -60,15 +60,18 @@ router.post("/login", (req, res) => {
     dataBase.query(
         `SELECT * FROM users WHERE email = '${email}'`,
         (err, result) => {
-            result = result[0];
-            console.log(result);
             if (err) {
                 res.sendStatus(500);
                 console.log("error in auth.js 65");
             } else {
-                if (!result) {
-                    res.send("no such user");
+                if (!result || result.length === undefined || result.length === 0) {
+
+                    res.redirect("/");
+                    return;
+                    // 로그인 실패시 서버 죽는 문제 해결
                 }
+                result = result[0];
+                console.log(result);
                 const inputHash = crypto
                     .createHash("sha256")
                     .update(password + result.salt)
@@ -86,7 +89,6 @@ router.post("/login", (req, res) => {
         }
     );
 });
-
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
