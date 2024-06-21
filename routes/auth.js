@@ -52,6 +52,12 @@ router.post("/signup", (req, res) => {
 router.get("/login", (req, res) => {
     res.render("login");
 });
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
 
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
@@ -89,6 +95,12 @@ router.post("/login", (req, res) => {
         }
     );
 });
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');

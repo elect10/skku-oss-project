@@ -20,6 +20,12 @@ router.post('/', checkLogin, (req, res) => {
         }
     });
 });
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
 
 router.get('/:id', (req, res) => {
     dataBase.query('SELECT questions.id, questions.title, questions.content, questions.writer FROM questions ' +
@@ -50,6 +56,13 @@ router.get('/:id', (req, res) => {
         }
     );
 });
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+
 
 router.put('/:id', (req, res) => {
     dataBase.query(`UPDATE questions SET title = '${req.body.title}', content = '${req.body.content}' WHERE id = ${req.params.id}`, (err, result) => {

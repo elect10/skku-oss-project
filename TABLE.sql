@@ -30,3 +30,7 @@ CREATE TABLE answers (
     FOREIGN KEY (writer) REFERENCES users(id),
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
+
+
+
+

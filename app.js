@@ -80,6 +80,12 @@ app.get('/', (req, res) => {
     });
 });
 
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
 app.get('/auth/my-questions', (req, res) => {
     if(req.session.user){
         dataBase.query(`SELECT * FROM questions WHERE writer = ?`, [req.session.user.id], (err, result) => {
@@ -97,6 +103,12 @@ app.get('/auth/my-questions', (req, res) => {
         res.redirect('/');
     }
 });
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
+// phase 2
 
 app.get('/all-questions', (req, res) => {
     req.session.userQuestions = null; // userQuestions를 초기화합니다.
