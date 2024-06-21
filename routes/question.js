@@ -22,7 +22,7 @@ router.post('/', checkLogin, (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    dataBase.query('SELECT questions.id, questions.title, questions.content FROM questions ' +
+    dataBase.query('SELECT questions.id, questions.title, questions.content, questions.writer FROM questions ' +
         `WHERE questions.id = '${req.params.id}'`, (err, resultQ) => {
             if (err) {
                 console.log("error in question.js 26");
@@ -32,8 +32,9 @@ router.get('/:id', (req, res) => {
             else {
                 resultQ = resultQ[0];
                 console.log("resQ: " + JSON.stringify(resultQ));
-                dataBase.query('SELECT answers.content FROM questions ' +
-                    'JOIN answers ON questions.id = answers.question_id ' +
+                dataBase.query('SELECT answers.content, answers.writer, users.nickname FROM answers ' +
+                    'JOIN users ON answers.writer = users.id ' +
+                    'JOIN questions ON questions.id = answers.question_id ' +
                     `WHERE questions.id = '${req.params.id}'`, (err, resultA) => {
                         console.log(resultA);
                         if (err) {

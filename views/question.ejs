@@ -98,8 +98,13 @@
             <h2>답변</h2>
             <ul>
                 <% if (answers.length > 0) { %>
+                    <% var anonymousCount = 1; %>
                     <% answers.forEach(function(answer) { %>
-                        <li><%= answer.content %></li>
+                        <% if (answer.writer === question.writer) { %>
+                            <li><strong>작성자:</strong> <%= answer.content %></li>
+                        <% } else { %>
+                            <li><strong>익명<%= anonymousCount++ %>:</strong> <%= answer.content %></li>
+                        <% } %>
                     <% }); %>
                 <% } else { %>
                     <li>아직 작성된 답변이 없어요!</li>
